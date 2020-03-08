@@ -1,6 +1,17 @@
-import { Middleware, ParameterizedContext } from 'koa'
-import compose from 'koa-compose'
+import Router from 'koa-router'
+import searchRouter from './endpoints/search'
 
-export default function routes(): Middleware<ParameterizedContext> {
-  return compose([])
+const routerDefinitions = [
+  searchRouter,
+]
+
+export default function routes() {
+  const apiRouter = new Router({ prefix: '/api' })
+
+  for (const router of routerDefinitions) {
+    apiRouter.use(router.routes())
+    apiRouter.use(router.allowedMethods())
+  }
+  
+  return apiRouter.routes()
 }
