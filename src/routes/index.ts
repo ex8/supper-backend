@@ -1,4 +1,5 @@
 import Router from 'koa-router'
+
 import searchRouter from './endpoints/search'
 
 const routerDefinitions = [

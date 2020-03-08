@@ -1,5 +1,5 @@
-import Router from 'koa-router'
 import { Context } from 'koa'
+import Router from 'koa-router'
 
 const router = new Router({ prefix: '/search' })
 
