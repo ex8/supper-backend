@@ -1,4 +1,6 @@
 import Router from 'koa-router'
+import { Middleware } from 'koa'
+import compose from 'koa-compose'
 
 import searchRouter from './endpoints/search'
 
@@ -6,7 +8,7 @@ const routerDefinitions = [
   searchRouter,
 ]
 
-export default function routes() {
+export default function routes(): Middleware {
   const apiRouter = new Router({ prefix: '/api' })
 
   for (const router of routerDefinitions) {
@@ -14,5 +16,8 @@ export default function routes() {
     apiRouter.use(router.allowedMethods())
   }
   
-  return apiRouter.routes()
+  return compose([
+    apiRouter.routes(),
+    apiRouter.allowedMethods(),
+  ])
 }

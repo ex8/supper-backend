@@ -1,9 +1,10 @@
-import { Context } from 'koa'
 import Router from 'koa-router'
+
+import { plate } from '../../controllers'
 
 const router = new Router({ prefix: '/search' })
 
 router
-  .get('/', (ctx: Context) => ctx.body = 'search list')
+  .get('/', plate.fetchAllPublicPlates)
 
 export default router
