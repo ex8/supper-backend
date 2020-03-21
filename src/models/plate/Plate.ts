@@ -1,16 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-interface IPlate {
-  images: string[]
-  title: string
-  slug: string
-  description: string
-  price: number
-  tags?: string[]
-  ingredients?: string[]
-  isPublic: boolean
-}
-
 const plateSchema = new Schema({
   images: [String],
   title: { type: String, required: true, },
@@ -32,7 +21,4 @@ plateSchema.pre('save', function(next) {
 
 const Plate = model('Plate', plateSchema)
 
-export {
-  IPlate,
-  Plate,
-}
+export { Plate }

@@ -5,7 +5,7 @@ import helmet from 'koa-helmet'
 import cors from '@koa/cors'
 import bodyParser from 'koa-body'
 
-export default function middleware(): Middleware {
+export default function middlewares(): Middleware {
   return compose([
     logger(),
     helmet(),

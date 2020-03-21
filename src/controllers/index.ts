@@ -1,5 +1,7 @@
-import plate from './plate'
+import user from './users'
+import plate from './plates'
 
 export {
+  user,
   plate,
 }

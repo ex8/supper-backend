@@ -4,7 +4,7 @@ import compose from 'koa-compose'
 
 import searchRouter from './endpoints/search'
 
-const routerDefinitions = [
+const routerDefinitions: Router[] = [
   searchRouter,
 ]
 

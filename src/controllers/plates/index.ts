@@ -1,6 +1,6 @@
-import { Context } from "koa";
+import { Context } from 'koa';
 
-import { IPlate, Plate } from '../models'
+import { IPlate, Plate } from '../../models'
 
 export default {
   async fetchAllPublicPlates(ctx: Context): Promise<void> {
