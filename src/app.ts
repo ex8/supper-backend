@@ -1,4 +1,4 @@
-import Koa, { Context } from 'koa'
+import Koa from 'koa'
 
 import connectDatabase from './db'
 import middlewares from './middlewares'
@@ -15,6 +15,5 @@ try {
 
 app.use(middlewares())
 app.use(routes())
-app.use((ctx: Context) => ctx.status = 404)
 
 app.listen(port, () => console.log(`Supper API running on ${port}...`))
