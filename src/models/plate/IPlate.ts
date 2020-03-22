@@ -1,4 +1,6 @@
-export interface IPlate {
+import { Document } from 'mongoose'
+
+export interface IPlate extends Document {
   images: string[]
   title: string
   slug: string

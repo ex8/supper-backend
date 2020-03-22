@@ -1,4 +1,5 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Model } from 'mongoose';
+import { IPlate } from './IPlate'
 
 const plateSchema = new Schema({
   images: [String],
@@ -11,7 +12,7 @@ const plateSchema = new Schema({
   isPublic: { type: Boolean, default: false, },
 }, { timestamps: true })
 
-plateSchema.pre('save', function(next) {
+plateSchema.pre<IPlate>('save', function(next) {
   if (this.isModified('title')) {
     const slugified = this.title.toLowerCase().replace(' ', '-')
     this.slug = slugified
@@ -19,6 +20,6 @@ plateSchema.pre('save', function(next) {
   return next()
 })
 
-const Plate = model('Plate', plateSchema)
+const Plate: Model<IPlate> = model<IPlate>('Plate', plateSchema)
 
 export { Plate }
