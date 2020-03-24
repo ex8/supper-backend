@@ -1,6 +1,6 @@
 import Router from 'koa-router'
 
-import { plate } from '../../controllers'
+import { plate } from '../../../controllers'
 
 const router = new Router({ prefix: '/search' })
 

@@ -15,11 +15,15 @@ userSchema.pre<IUser>('save', async function (next) {
 
   // Salt
   const salt: string = await genSalt(15)
-  if (!salt) return next(new Error('Could not generate salt'))
+  if (!salt) {
+    return next(new Error('Could not generate salt'))
+  }
 
   // Hash
   const hashed: string = await hash(this.password, salt)
-  if (!hashed) return next(new Error('Could not generate hash'))
+  if (!hashed) {
+    return next(new Error('Could not generate hash'))
+  }
 
   this.password = hashed
   next()

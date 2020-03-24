@@ -5,7 +5,7 @@ import { IChef } from './IChef'
 const chefSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, unique: true, required: true },
   phone: { type: String, required: true },
   password: { type: String, required: true },
   address: {
@@ -18,14 +18,14 @@ const chefSchema = new Schema({
   location: {
     type: {
       type: String,
-      required: true,
       enum: ['Point'],
       default: 'Point',
+      required: true,
     },
     coordinates: { type: [Number, Number], required: true },
   },
   profile: {
-    username: { type: String, required: true },
+    username: { type: String, unique: true, required: true },
     bio: { type: String },
     social: {
       facebook: { type: String },
@@ -40,11 +40,15 @@ chefSchema.pre<IChef>('save', async function (next) {
 
   // Salt
   const salt: string = await genSalt(15)
-  if (!salt) return next(new Error('Could not generate salt'))
+  if (!salt) {
+    return next(new Error('Could not generate salt'))
+  }
 
   // Hash
   const hashed: string = await hash(this.password, salt)
-  if (!hashed) return next(new Error('Could not generate hash'))
+  if (!hashed) {
+    return next(new Error('Could not generate hash'))
+  }
 
   this.password = hashed
   next()

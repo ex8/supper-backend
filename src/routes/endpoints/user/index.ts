@@ -1,11 +1,11 @@
 import Router from 'koa-router'
-import { user } from '../../controllers'
+import { user } from '../../../controllers'
 
 const router = new Router({ prefix: '/users' })
 
 const { fetchUsers, fetchUserById, createUser, updateUserById, deleteUserById } = user
 
-router  
+router
   .get('/', fetchUsers)
   .get('/:id', fetchUserById)
   .post('/', createUser)

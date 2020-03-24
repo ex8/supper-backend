@@ -13,5 +13,5 @@ export default function middlewares(): Middleware {
     helmet(),
     cors(),
     bodyParser(),
-  ]) 
+  ])
 }

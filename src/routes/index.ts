@@ -2,10 +2,11 @@ import Router from 'koa-router'
 import { Middleware } from 'koa'
 import compose from 'koa-compose'
 
-import { userRouter, searchRouter } from './endpoints'
+import { userRouter, chefRouter, searchRouter } from './endpoints'
 
 const routerDefinitions: Router[] = [
   userRouter,
+  chefRouter,
   searchRouter,
 ]
 
@@ -16,7 +17,7 @@ export default function routes(): Middleware {
     apiRouter.use(router.routes())
     apiRouter.use(router.allowedMethods())
   }
-  
+
   return compose([
     apiRouter.routes(),
     apiRouter.allowedMethods(),
