@@ -1,6 +1,6 @@
 import { Schema, model, Model } from 'mongoose'
-import { genSalt, hash } from 'bcryptjs'
 import { IChef } from './IChef'
+import { encrypt } from '../../helpers/models'
 
 const chefSchema = new Schema({
   firstName: { type: String, required: true },
@@ -38,19 +38,12 @@ const chefSchema = new Schema({
 chefSchema.pre<IChef>('save', async function (next) {
   if (!this.isModified('password')) return next();
 
-  // Salt
-  const salt: string = await genSalt(15)
-  if (!salt) {
-    return next(new Error('Could not generate salt'))
+  const encrypted: string = await encrypt(this.password)
+  if (!encrypted) {
+    return next(new Error('Could not encrypt password'))
   }
 
-  // Hash
-  const hashed: string = await hash(this.password, salt)
-  if (!hashed) {
-    return next(new Error('Could not generate hash'))
-  }
-
-  this.password = hashed
+  this.password = encrypted
   next()
 })
 
