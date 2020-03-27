@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-
+import { isValidObjectId } from 'mongoose'
 import { IUser, User } from '../../models'
 
 export default {
@@ -11,6 +11,9 @@ export default {
 
   async fetchUserById(ctx: Context): Promise<void> {
     const { id } = ctx.params
+    if (!isValidObjectId(id)) {
+      return ctx.throw(400, { success: false, message: 'Bad id' })
+    }
     const user: IUser = await User.findById(id)
     ctx.status = 200
     ctx.body = { success: true, user }
@@ -18,7 +21,7 @@ export default {
 
   async createUser(ctx: Context): Promise<void> {
     const { firstName, lastName, email, phone, password } = ctx.request.body
-    const exists: IUser = await User.findOne({ email })
+    const exists: boolean = await User.exists({ email })
     if (exists) {
       return ctx.throw(400, { success: false, message: 'Email already exists.' })
     }

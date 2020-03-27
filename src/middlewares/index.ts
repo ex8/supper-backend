@@ -8,10 +8,10 @@ import error from './error'
 
 export default function middlewares(): Middleware {
   return compose([
-    error(),
     logger(),
     helmet(),
     cors(),
+    error(),
     bodyParser(),
   ])
 }

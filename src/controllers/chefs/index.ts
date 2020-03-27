@@ -22,7 +22,7 @@ export default {
   async createChef(ctx: Context): Promise<void> {
     const { firstName, lastName, email, password, address, location, profile } = ctx.request.body
     const { username } = profile
-    const exists: IChef = await Chef.findOne({ $or: [{ email }, { username }] })
+    const exists: boolean = await Chef.exists({ $or: [{ email }, { username }] })
     if (exists) {
       return ctx.throw(400, { success: false, message: 'Email or username already exists.' })
     }

@@ -1,4 +1,4 @@
-import Router from 'koa-router'
+import Router from '@koa/router'
 import { Middleware } from 'koa'
 import compose from 'koa-compose'
 
@@ -11,15 +11,15 @@ const routerDefinitions: Router[] = [
 ]
 
 export default function routes(): Middleware {
-  const apiRouter = new Router({ prefix: '/api' })
+  const api = new Router({ prefix: '/api' })
 
   for (const router of routerDefinitions) {
-    apiRouter.use(router.routes())
-    apiRouter.use(router.allowedMethods())
+    api.use(router.routes())
+    api.use(router.allowedMethods())
   }
 
   return compose([
-    apiRouter.routes(),
-    apiRouter.allowedMethods(),
+    api.routes(),
+    api.allowedMethods(),
   ])
 }

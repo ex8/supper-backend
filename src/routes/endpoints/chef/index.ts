@@ -1,4 +1,4 @@
-import Router from 'koa-router'
+import Router from '@koa/router'
 import { chef } from '../../../controllers'
 
 const router = new Router({ prefix: '/chefs' })

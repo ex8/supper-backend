@@ -21,22 +21,27 @@
     "url": "https://github.com/ex8/supper-backend/issues"
   },
   "homepage": "https://github.com/ex8/supper-backend#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint && npm run build"
+    }
+  },
   "dependencies": {
     "@koa/cors": "^2.2.3",
+    "@koa/router": "^8.0.8",
     "bcryptjs": "^2.4.3",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-compose": "^4.1.0",
     "koa-helmet": "^5.2.0",
     "koa-logger": "^3.2.1",
-    "koa-router": "^8.0.8",
     "mongoose": "^5.9.3"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/jest": "^25.1.4",
     "@types/koa": "^2.11.2",
-    "@types/koa-router": "^7.4.0",
     "@types/mongoose": "^5.7.7",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
@@ -44,11 +49,5 @@
     "ts-jest": "^25.2.1",
     "tslint": "^6.0.0",
     "typescript": "^3.8.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run lint"
-    }
   }
 }
