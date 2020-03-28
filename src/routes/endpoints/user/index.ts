@@ -1,8 +1,9 @@
+import { DefaultState, Context } from 'koa';
 import Router from '@koa/router'
 import { user } from '../../../controllers'
 import { isObjectId } from '../../../helpers/routes';
 
-const router = new Router({ prefix: '/users' })
+const router = new Router<DefaultState, Context>({ prefix: '/users' })
 
 const { fetchUsers, fetchUserById, createUser, updateUserById, deleteUserById } = user
 

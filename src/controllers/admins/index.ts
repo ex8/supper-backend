@@ -1,4 +1,4 @@
-import { Context } from 'koa'
+import { Context, Middleware } from 'koa'
 import { IAdmin, Admin } from '../../models'
 
 export default {
