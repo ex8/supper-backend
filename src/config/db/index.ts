@@ -1,4 +1,8 @@
+import '../env'
 import { connect } from 'mongoose'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const dbUrl: string = process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/supper'
 

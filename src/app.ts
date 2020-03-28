@@ -1,6 +1,6 @@
+import './config/env'
 import Koa from 'koa'
-
-import connectDatabase from './db'
+import { connectDatabase } from './config'
 import middlewares from './middlewares'
 import routes from './routes'
 
