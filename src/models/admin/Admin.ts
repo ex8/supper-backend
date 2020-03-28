@@ -1,9 +1,9 @@
 import { Schema, model, Model } from 'mongoose'
 import validator from 'validator'
-import { IUser } from './IUser';
+import { IAdmin } from './IAdmin'
 import { encrypt } from '../../helpers/models'
 
-const userSchema = new Schema({
+const adminSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: {
@@ -18,11 +18,10 @@ const userSchema = new Schema({
     validate: [validator.isMobilePhone, 'Invalid phone number'],
   },
   password: { type: String, required: true },
-  isVerified: { type: Boolean, default: false, required: true },
 }, { timestamps: true })
 
-userSchema.pre<IUser>('save', async function (next) {
-  if (!this.isModified('password')) return next();
+adminSchema.pre<IAdmin>('save', async function (next) {
+  if (!this.isModified('password')) return next()
 
   const encrypted: string = await encrypt(this.password)
   if (!encrypted) {
@@ -33,10 +32,10 @@ userSchema.pre<IUser>('save', async function (next) {
   next()
 })
 
-userSchema.virtual('fullName').get(function () {
+adminSchema.virtual('fullName').get(function () {
   return `${this.firstName} ${this.lastName}`
 })
 
-const User: Model<IUser> = model<IUser>('User', userSchema)
+const Admin: Model<IAdmin> = model<IAdmin>('Admin', adminSchema)
 
-export { User }
+export { Admin }

@@ -1,5 +1,6 @@
 import Router from '@koa/router'
 import { chef } from '../../../controllers'
+import isValidObjectId from '../../../middlewares/isValidObjectId';
 
 const router = new Router({ prefix: '/chefs' })
 
@@ -7,9 +8,9 @@ const { fetchChefs, fetchChefById, createChef, updateChefById, deleteChefById } 
 
 router
   .get('/', fetchChefs)
-  .get('/:id', fetchChefById)
+  .get('/:id', isValidObjectId(), fetchChefById)
   .post('/', createChef)
-  .put('/:id', updateChefById)
-  .delete('/:id', deleteChefById)
+  .put('/:id', isValidObjectId(), updateChefById)
+  .delete('/:id', isValidObjectId(), deleteChefById)
 
 export default router

@@ -3,13 +3,13 @@ import { IPlate } from './IPlate'
 
 const plateSchema = new Schema({
   images: [String],
-  title: { type: String, required: true, },
-  slug: { type: String, required: true, unique: true, },
-  description: { type: String, required: true, },
-  price: { type: Number, required: true, },
+  title: { type: String, required: true, maxlength: 75 },
+  slug: { type: String, required: true, unique: true },
+  description: { type: String, required: true },
+  price: { type: Number, required: true },
   tags: [String],
   ingredients: [String],
-  isPublic: { type: Boolean, default: false, },
+  isPublic: { type: Boolean, default: false },
 }, { timestamps: true })
 
 plateSchema.pre<IPlate>('save', function(next) {

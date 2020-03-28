@@ -1,12 +1,22 @@
 import { Schema, model, Model } from 'mongoose'
+import validator from 'validator'
 import { IChef } from './IChef'
 import { encrypt } from '../../helpers/models'
 
 const chefSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  email: { type: String, unique: true, required: true },
-  phone: { type: String, required: true },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    validate: [validator.isEmail, 'Invalid e-mail address'],
+  },
+  phone: {
+    type: String,
+    required: true,
+    validate: [validator.isMobilePhone, 'Invalid phone number'],
+  },
   password: { type: String, required: true },
   address: {
     streetName: { type: String, required: true },
@@ -32,8 +42,9 @@ const chefSchema = new Schema({
       twitter: { type: String },
       instagram: { type: String },
     },
-  }
-})
+  },
+  isVerified: { type: Boolean, default: false, required: true },
+}, { timestamps: true })
 
 chefSchema.pre<IChef>('save', async function (next) {
   if (!this.isModified('password')) return next();

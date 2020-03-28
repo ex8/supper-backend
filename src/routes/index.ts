@@ -2,11 +2,17 @@ import Router from '@koa/router'
 import { Middleware } from 'koa'
 import compose from 'koa-compose'
 
-import { userRouter, chefRouter, searchRouter } from './endpoints'
+import {
+  userRouter,
+  chefRouter,
+  adminRouter,
+  searchRouter,
+} from './endpoints'
 
 const routerDefinitions: Router[] = [
   userRouter,
   chefRouter,
+  adminRouter,
   searchRouter,
 ]
 
