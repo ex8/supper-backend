@@ -15,7 +15,7 @@ export interface IChef extends Document {
   }
   location: {
     type: string
-    coordinates: [number, number]
+    coordinates: number[]
   }
   profile: {
     username: string
@@ -26,4 +26,6 @@ export interface IChef extends Document {
       instagram?: string
     }
   }
+  isVerified: boolean
+  isActive: boolean
 }

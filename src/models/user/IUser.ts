@@ -6,5 +6,5 @@ export interface IUser extends Document {
   email: string
   phone: string
   password: string
-  isEmailVerified: boolean
+  isVerified: boolean
 }

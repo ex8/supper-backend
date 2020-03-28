@@ -8,6 +8,10 @@
     "trailing-comma": [
       true,
       { "esSpecCompliant": true }
+    ],
+    "max-line-length": [
+      true,
+      { "limit": 120 }
     ]
   },
   "rulesDirectory": []

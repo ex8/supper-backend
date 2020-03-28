@@ -33,18 +33,10 @@ export default {
 
   async updateChefById(ctx: Context): Promise<void> {
     const { id } = ctx.params
-    const { firstName, lastName, email, password, address, location, profile } = ctx.request.body
-    const chef: IChef = await Chef.findByIdAndUpdate(id, { firstName, lastName, email, password, address, location, profile }, { new: true })
-    if (!chef) {
-      return ctx.throw(404, { success: false, message: 'Chef not found.' })
-    }
-    ctx.status = 200
-    ctx.body = { success: true, chef }
-  },
-
-  async deleteChefById(ctx: Context): Promise<void> {
-    const { id } = ctx.params
-    const chef: IChef = await Chef.findByIdAndDelete(id)
+    const { firstName, lastName, email, password, address, location, profile, isVerified, isActive } = ctx.request.body
+    const chef: IChef = await Chef.findByIdAndUpdate(id, {
+      firstName, lastName, email, password, address, location, profile, isVerified, isActive,
+    }, { new: true })
     if (!chef) {
       return ctx.throw(404, { success: false, message: 'Chef not found.' })
     }

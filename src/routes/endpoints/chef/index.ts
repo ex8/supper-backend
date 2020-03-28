@@ -5,13 +5,12 @@ import { isObjectId } from '../../../helpers/routes';
 
 const router = new Router<DefaultState, Context>({ prefix: '/chefs' })
 
-const { fetchChefs, fetchChefById, createChef, updateChefById, deleteChefById } = chef
+const { fetchChefs, fetchChefById, createChef, updateChefById } = chef
 
 router
   .get('/', fetchChefs)
   .get('/:id', isObjectId, fetchChefById)
   .post('/', createChef)
   .put('/:id', isObjectId, updateChefById)
-  .delete('/:id', isObjectId, deleteChefById)
 
 export default router

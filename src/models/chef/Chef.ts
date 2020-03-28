@@ -32,7 +32,7 @@ const chefSchema = new Schema({
       default: 'Point',
       required: true,
     },
-    coordinates: { type: [Number, Number], required: true },
+    coordinates: { type: [Number], required: true },
   },
   profile: {
     username: { type: String, unique: true, required: true },
@@ -44,6 +44,7 @@ const chefSchema = new Schema({
     },
   },
   isVerified: { type: Boolean, default: false, required: true },
+  isActive: { type: Boolean, default: true, required: true },
 }, { timestamps: true })
 
 chefSchema.pre<IChef>('save', async function (next) {

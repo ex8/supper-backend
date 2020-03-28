@@ -36,14 +36,4 @@ export default {
     ctx.status = 200
     ctx.body = { success: true, user }
   },
-
-  async deleteUserById(ctx: Context): Promise<void> {
-    const { id } = ctx.params
-    const user: IUser = await User.findByIdAndDelete(id)
-    if (!user) {
-      return ctx.throw(404, { success: false, message: 'User not found.' })
-    }
-    ctx.status = 200
-    ctx.body = { success: true, user }
-  },
 }
