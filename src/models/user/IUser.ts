@@ -7,4 +7,6 @@ export interface IUser extends Document {
   phone: string
   password: string
   isVerified: boolean
+  fullName: string
+  generateJwt(): string
 }

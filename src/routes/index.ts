@@ -7,6 +7,7 @@ import {
   chefRouter,
   adminRouter,
   searchRouter,
+  accountRouter,
 } from './endpoints'
 
 const routerDefinitions: Router[] = [
@@ -14,6 +15,7 @@ const routerDefinitions: Router[] = [
   chefRouter,
   adminRouter,
   searchRouter,
+  accountRouter,
 ]
 
 export default function routes(): Middleware {

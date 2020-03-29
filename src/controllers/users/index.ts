@@ -1,4 +1,5 @@
 import { Context } from 'koa'
+import { compare } from 'bcryptjs'
 import { IUser, User } from '../../models'
 
 export default {
@@ -35,5 +36,21 @@ export default {
     }
     ctx.status = 200
     ctx.body = { success: true, user }
+  },
+
+  async loginUser(ctx: Context): Promise<void> {
+    const { email, password } = ctx.request.body
+    const user: IUser = await User.findOne({ email })
+    if (!user) {
+      return ctx.throw(400, { success: false, message: 'Incorrect email. Please try again' })
+    }
+    const isMatch: boolean = await compare(password, user.password)
+    if (isMatch) {
+      const token: string = user.generateJwt()
+      ctx.status = 200
+      ctx.body = { success: true, token }
+    } else {
+      return ctx.throw(400, { success: false, message: 'Incorrect email or password. Please try again.' })
+    }
   },
 }

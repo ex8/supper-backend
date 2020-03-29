@@ -2,6 +2,8 @@ import { Schema, model, Model } from 'mongoose'
 import validator from 'validator'
 import { IChef } from './IChef'
 import { encrypt } from '../../helpers/models'
+import { sign } from 'jsonwebtoken';
+import { secret } from '../../middlewares/passport';
 
 const chefSchema = new Schema({
   firstName: { type: String, required: true },
@@ -59,13 +61,18 @@ chefSchema.pre<IChef>('save', async function (next) {
   next()
 })
 
-chefSchema.virtual('fullName').get(function () {
+chefSchema.virtual('fullName').get(function (): string {
   return `${this.firstName} ${this.lastName}`
 })
 
-chefSchema.virtual('fullAddress').get(function () {
+chefSchema.virtual('fullAddress').get(function (): string {
   return `${this.streetName}, ${this.city}, ${this.state} ${this.zipCode}, ${this.country}`
 })
+
+chefSchema.methods.generateJwt = function(): string {
+  const payload: Record<string, string> = { id: this.id }
+  return sign(payload, secret, { expiresIn: '5h' })
+}
 
 const Chef: Model<IChef> = model<IChef>('Chef', chefSchema)
 

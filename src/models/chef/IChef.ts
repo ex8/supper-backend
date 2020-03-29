@@ -28,4 +28,7 @@ export interface IChef extends Document {
   }
   isVerified: boolean
   isActive: boolean
+  fullName: string
+  fullAddress: string
+  generateJwt(): string
 }
