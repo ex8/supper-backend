@@ -2,7 +2,7 @@
   "name": "supper-backend",
   "version": "1.0.0",
   "description": "Supper Backend",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc",
@@ -15,8 +15,7 @@
     "url": "git+https://github.com/ex8/supper-backend.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Matt Massoodi",
   "bugs": {
     "url": "https://github.com/ex8/supper-backend/issues"
   },
@@ -54,6 +53,7 @@
     "@types/koa__router": "^8.0.2",
     "@types/mongoose": "^5.7.7",
     "@types/passport-jwt": "^3.0.3",
+    "@types/supertest": "^2.0.8",
     "@types/validator": "^12.0.1",
     "husky": "^4.2.3",
     "jest": "^25.1.0",

@@ -9,7 +9,7 @@ const router = new Router<DefaultState, Context>({ prefix: '/users' })
 const { fetchUsers, fetchUserById, createUser, updateUserById } = user
 
 router
-  .get('/', fetchUsers, isAuthenticated('admin'))
+  .get('/', isAuthenticated('admin'), fetchUsers)
   .get('/:id', isAuthenticated('user', 'admin'), isObjectId, fetchUserById)
   .post('/', createUser)
   .put('/:id', isAuthenticated('user', 'admin'), isObjectId, updateUserById)

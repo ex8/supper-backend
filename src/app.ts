@@ -18,3 +18,5 @@ app.use(routes())
 
 // tslint:disable-next-line: no-console
 app.listen(port, () => console.log(`Supper API running on ${port}...`))
+
+export default app
