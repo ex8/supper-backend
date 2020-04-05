@@ -3,19 +3,25 @@ import { Middleware } from 'koa'
 import compose from 'koa-compose'
 
 import {
+  searchRouter,
+  authRouter,
   userRouter,
   chefRouter,
   adminRouter,
-  searchRouter,
+  plateRouter,
   accountRouter,
+  chefAccountRouter,
 } from './endpoints'
 
 const routerDefinitions: Router[] = [
+  searchRouter,
+  authRouter,
   userRouter,
   chefRouter,
   adminRouter,
-  searchRouter,
+  plateRouter,
   accountRouter,
+  chefAccountRouter,
 ]
 
 export default function routes(): Middleware {

@@ -5,9 +5,10 @@ import { isAuthenticated } from '../../../middlewares/passport';
 
 const router = new Router<DefaultState, Context>({ prefix: '/admins' })
 
-const { createAdmin } = admin
+const { createAdmin, updateAdmin } = admin
 
 router
   .post('/', isAuthenticated('admin'), createAdmin)
+  .put('/', isAuthenticated('admin'), updateAdmin)
 
 export default router
