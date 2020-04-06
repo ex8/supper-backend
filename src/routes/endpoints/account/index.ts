@@ -1,4 +1,4 @@
-import { DefaultState, Context } from 'koa';
+import { DefaultState, Context } from 'koa'
 import Router from '@koa/router'
 import { user } from '../../../controllers'
 

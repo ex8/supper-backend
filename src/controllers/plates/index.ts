@@ -1,5 +1,4 @@
 import { Context } from 'koa'
-
 import { IPlate, Plate } from '../../models'
 import { slugify } from '../../helpers/models'
 

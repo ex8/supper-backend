@@ -1,5 +1,5 @@
-import { IUser } from '../user';
-import { IPlate } from '../plate';
+import { IUser } from '../user'
+import { IPlate } from '../plate'
 
 export interface IReview {
   rating: number

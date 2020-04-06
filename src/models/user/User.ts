@@ -1,9 +1,9 @@
 import { Schema, model, Model } from 'mongoose'
 import validator from 'validator'
-import { IUser } from './IUser';
+import { IUser } from './IUser'
 import { encrypt } from '../../helpers/models'
-import { sign } from 'jsonwebtoken';
-import { secret } from '../../middlewares/passport';
+import { sign } from 'jsonwebtoken'
+import { secret } from '../../middlewares/passport'
 
 const userSchema = new Schema({
   firstName: { type: String, required: true },

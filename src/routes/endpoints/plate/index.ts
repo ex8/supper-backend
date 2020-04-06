@@ -1,4 +1,4 @@
-import { DefaultState, Context } from 'koa';
+import { DefaultState, Context } from 'koa'
 import Router from '@koa/router'
 import { isAuthenticated } from '../../../middlewares/passport'
 import { isObjectId } from '../../../helpers/routes'

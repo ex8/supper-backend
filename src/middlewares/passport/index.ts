@@ -1,12 +1,11 @@
 import '../../config/env'
-import { Middleware, Context, Next } from 'koa'
+import { Middleware } from 'koa'
 import { use, authenticate, initialize } from 'koa-passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 import { IUser, User, IChef, Chef, IAdmin, Admin } from '../../models'
 
 export const secret: string = process.env.JWT_KEY
-
-export type AuthorizedRoles = 'user' | 'chef' | 'admin'
+export type roles = 'user' | 'chef' | 'admin'
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -48,7 +47,7 @@ use('admin', new Strategy(opts, async ({ id }, done) => {
 //   }
 // }
 
-export function isAuthenticated(...types: AuthorizedRoles[]): Middleware {
+export function isAuthenticated(...types: roles[]): Middleware {
   return authenticate(types, { session: false })
 }
 

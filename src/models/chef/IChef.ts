@@ -1,5 +1,5 @@
 import { Document } from 'mongoose'
-import { IReview } from '../reviews'
+import { IReview } from '../review'
 
 export interface IChef extends Document {
   firstName: string

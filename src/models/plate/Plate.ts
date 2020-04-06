@@ -1,6 +1,6 @@
-import { Schema, model, Model } from 'mongoose';
+import { Schema, model, Model } from 'mongoose'
 import { IPlate } from './IPlate'
-import { slugify } from '../../helpers/models';
+import { slugify } from '../../helpers/models'
 
 const plateSchema = new Schema({
   title: { type: String, required: true, maxlength: 75 },

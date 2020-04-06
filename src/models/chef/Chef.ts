@@ -4,7 +4,7 @@ import { IChef } from './IChef'
 import { encrypt } from '../../helpers/models'
 import { sign } from 'jsonwebtoken'
 import { secret } from '../../middlewares/passport'
-import { reviewSchema } from '../reviews'
+import { reviewSchema } from '../review'
 
 const chefSchema = new Schema({
   firstName: { type: String, required: true },

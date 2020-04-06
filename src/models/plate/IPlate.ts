@@ -1,5 +1,5 @@
 import { Document } from 'mongoose'
-import { IChef } from '../chef';
+import { IChef } from '../chef'
 
 export interface IPlate extends Document {
   title: string
