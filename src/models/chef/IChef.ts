@@ -16,7 +16,6 @@ export interface IChef extends Document {
   reviews: IReview[]
   fullName: string
   fullAddress: string
-  generateJwt(): string
 }
 
 export interface IAddress {

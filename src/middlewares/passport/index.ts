@@ -1,5 +1,5 @@
 import '../../config/env'
-import { Middleware } from 'koa'
+import { Middleware, Context, Next } from 'koa'
 import { use, authenticate, initialize } from 'koa-passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 import { IUser, User, IChef, Chef, IAdmin, Admin } from '../../models'
@@ -35,17 +35,6 @@ use('admin', new Strategy(opts, async ({ id }, done) => {
   }
   done(null, false)
 }))
-
-// export function isAuthenticated(...types: AuthorizedRoles[]): Middleware {
-//   return (ctx: Context, next: Next) => {
-//     return authenticate(types, { session: false }, async (err, user) => {
-//       if (err || !user) {
-//         return ctx.throw(401, { success: false, message: 'Unauthorized' })
-//       }
-//       await next()
-//     })(ctx, next)
-//   }
-// }
 
 export function isAuthenticated(...types: roles[]): Middleware {
   return authenticate(types, { session: false })

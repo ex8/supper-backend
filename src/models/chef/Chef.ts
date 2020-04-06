@@ -72,11 +72,6 @@ chefSchema.virtual('fullAddress').get(function (): string {
   return `${this.streetName}, ${this.city}, ${this.state} ${this.zipCode}, ${this.country}`
 })
 
-chefSchema.methods.generateJwt = function(): string {
-  const payload: Record<string, string> = { id: this.id }
-  return sign(payload, secret, { expiresIn: '5h' })
-}
-
 const Chef: Model<IChef> = model<IChef>('Chef', chefSchema)
 
 export { Chef }

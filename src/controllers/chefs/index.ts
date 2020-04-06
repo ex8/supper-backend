@@ -1,6 +1,7 @@
 import { Context } from 'koa'
 import { compare } from 'bcryptjs'
 import { IChef, Chef } from '../../models'
+import { generateToken } from '../../helpers/models'
 
 export default {
   async fetchChefs(ctx: Context): Promise<void> {
@@ -49,11 +50,11 @@ export default {
     const { email, password } = ctx.request.body
     const chef: IChef = await Chef.findOne({ email })
     if (!chef) {
-      return ctx.throw(400, { success: false, message: 'Incorrect email. Please try again' })
+      return ctx.throw(400, { success: false, message: 'Incorrect email. Please try again.' })
     }
     const isMatch: boolean = await compare(password, chef.password)
     if (isMatch) {
-      const token: string = chef.generateJwt()
+      const token: string = generateToken({ id: chef.id })
       ctx.status = 200
       ctx.body = { success: true, token }
     } else {

@@ -8,5 +8,4 @@ export interface IUser extends Document {
   password: string
   isVerified: boolean
   fullName: string
-  generateJwt(): string
 }

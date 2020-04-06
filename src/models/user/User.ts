@@ -2,8 +2,6 @@ import { Schema, model, Model } from 'mongoose'
 import validator from 'validator'
 import { IUser } from './IUser'
 import { encrypt } from '../../helpers/models'
-import { sign } from 'jsonwebtoken'
-import { secret } from '../../middlewares/passport'
 
 const userSchema = new Schema({
   firstName: { type: String, required: true },
@@ -38,11 +36,6 @@ userSchema.pre<IUser>('save', async function (next) {
 userSchema.virtual('fullName').get(function (): string {
   return `${this.firstName} ${this.lastName}`
 })
-
-userSchema.methods.generateJwt = function(): string {
-  const payload: Record<string, string> = { id: this.id }
-  return sign(payload, secret, { expiresIn: '5h' })
-}
 
 const User: Model<IUser> = model<IUser>('User', userSchema)
 
