@@ -2,8 +2,9 @@ import { Schema, model, Model } from 'mongoose'
 import validator from 'validator'
 import { IChef } from './IChef'
 import { encrypt } from '../../helpers/models'
-import { sign } from 'jsonwebtoken';
-import { secret } from '../../middlewares/passport';
+import { sign } from 'jsonwebtoken'
+import { secret } from '../../middlewares/passport'
+import { reviewSchema } from '../reviews'
 
 const chefSchema = new Schema({
   firstName: { type: String, required: true },
@@ -47,6 +48,8 @@ const chefSchema = new Schema({
   },
   isVerified: { type: Boolean, default: false, required: true },
   isActive: { type: Boolean, default: true, required: true },
+  rating: { type: Number, min: 0, max: 5, default: 0 },
+  reviews: [reviewSchema],
 }, { timestamps: true })
 
 chefSchema.pre<IChef>('save', async function (next) {
