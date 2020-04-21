@@ -37,6 +37,37 @@ Run the API server.
 npm start
 ```
 
+## Using Docker
+To run backend with MongoDB use `docker-compose`:
+```
+docker-compose up
+```
+The `-d` detached command allows you to run the containers without console output.
+
+To access the bash of each docker container:
+```
+docker exec -it <docker-name> bash
+```
+
+To shutdown the docker containers and network:
+```
+docker-compose down
+```
+
+To build the backend docker container individually:
+```
+docker build -t supper-backend .
+```
+
+To run the backend docker container individually:
+```
+docker run --env-file .env --name supper-backend supper-backend
+```
+
+To run the MongoDB container individually:
+```
+docker run --name mongodb mongo
+```
 
 ## Documentation
 To come...

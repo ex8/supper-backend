@@ -3,6 +3,7 @@ version: "3"
 services:
   supper-backend:
     container_name: supper-backend
+    image: supper-backend
     build: ./
     env_file:
       - ./.env
