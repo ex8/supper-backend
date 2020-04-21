@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  supper-backend:
+    container_name: supper-backend
+    build: ./
+    env_file:
+      - ./.env
+    environment:
+      - MONGODB_URL=mongodb://database:27017/supper
+    ports:
+      - 5000:5000
+    links:
+      - database
+
+  database:
+    container_name: database
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db
