@@ -1,5 +1,5 @@
-import connectDatabase from './db'
+import mongo from './db'
 
 export {
-  connectDatabase,
+  mongo,
 }

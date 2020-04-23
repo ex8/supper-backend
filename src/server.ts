@@ -1,12 +1,12 @@
 import './config/env'
-import { connectDatabase } from './config'
+import { mongo } from './config'
 import app from './app'
 
 const port = process.env.API_PORT || 5000
 
 async function run() {
   try {
-    await connectDatabase()
+    await mongo()
   } catch (error) {
     throw new Error(`MongoDB connection unsuccessful: ${error}`)
   }
